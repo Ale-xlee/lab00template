@@ -31,6 +31,23 @@ team_data <- tibble(
 team_data
 ```
 
+library(tidyverse)
+team_data <- tibble(
+  name = c('Alex','Josh','Adam','Jess'),
+  age = c(19,20,19,19),
+  uni = c('Edi','Edi','Edi','Edi'),
+  sport = c('Rugby','Ski','Ski','Ski'))
+team_data %>%
+  mutate(sport_type = 
+           case_when(sport == 'Ski' ~ 'Snow',
+                     TRUE ~ 'Other')) %>%
+group_by(sport_type) %>%
+  summarise(
+    count = n(),
+    avg_age = mean(age, na.rm = TRUE)
+  )
+
+
 ### Exercise 18
 
 We now work on visualising our data. 
